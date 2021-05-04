@@ -6,22 +6,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+             xmlns:primitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              x:Class="MyApp.Portable.MainPage">
 
-    <telerikDataControls:RadListView ItemsSource="{Binding People}">
-        <telerikDataControls:RadListView.ItemTemplate>
-            <DataTemplate>
-                <telerikListView:ListViewTemplateCell>
-                    <telerikListView:ListViewTemplateCell.View>
-                        <StackLayout Padding="5"
-                                     Spacing="5">
-                            <Label Text="{Binding Name}" />
-                            <Label Text="{Binding DateOfBirth, StringFormat='DOB: {0:d}'}" />
-                        </StackLayout>
-                    </telerikListView:ListViewTemplateCell.View>
-                </telerikListView:ListViewTemplateCell>
-            </DataTemplate>
-        </telerikDataControls:RadListView.ItemTemplate>
-    </telerikDataControls:RadListView>
-
+    <primitives:RadSideDrawer x:Name="drawer"
+                              DrawerLength="200"
+                              DrawerTransitionType="SlideInOnTop">
+        <primitives:RadSideDrawer.MainContent>
+            <Grid>
+                <StackLayout Padding="5"
+                             Spacing="5"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <Label Text="Selected Person" FontAttributes="Bold"/>
+                    <Label Text="{Binding SelectedContact.Name}" />
+                    <Label Text="{Binding SelectedContact.DateOfBirth, StringFormat='DOB: {0:d}'}" />
+                </StackLayout>
+            </Grid>
+        </primitives:RadSideDrawer.MainContent>
+        <primitives:RadSideDrawer.DrawerContent>
+            <telerikDataControls:RadListView ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}">
+                <telerikDataControls:RadListView.ItemTemplate>
+                    <DataTemplate>
+                        <telerikListView:ListViewTemplateCell>
+                            <telerikListView:ListViewTemplateCell.View>
+                                <StackLayout Padding="5"
+                                             Spacing="5">
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding DateOfBirth, StringFormat='DOB: {0:d}'}" />
+                                </StackLayout>
+                            </telerikListView:ListViewTemplateCell.View>
+                        </telerikListView:ListViewTemplateCell>
+                    </DataTemplate>
+                </telerikDataControls:RadListView.ItemTemplate>
+            </telerikDataControls:RadListView>
+        </primitives:RadSideDrawer.DrawerContent>
+    </primitives:RadSideDrawer>
 </ContentPage>

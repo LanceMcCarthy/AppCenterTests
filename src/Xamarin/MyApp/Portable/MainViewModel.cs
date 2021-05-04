@@ -7,11 +7,19 @@ namespace MyApp.Portable
 {
     public class MainViewModel : ViewModelBase
     {
+        private Person selectedContact;
+
         public MainViewModel()
         {
-            People = new ObservableCollection<Person>(SampleDataService.Current.GeneratePeopleData(true));
+            Contacts = new ObservableCollection<Person>(SampleDataService.Current.GeneratePeopleData(true));
         }
 
-        public ObservableCollection<Person> People { get; set; }
+        public ObservableCollection<Person> Contacts { get; set; }
+
+        public Person SelectedContact
+        {
+            get => selectedContact;
+            set => SetProperty(ref selectedContact, value);
+        }
     }
 }
