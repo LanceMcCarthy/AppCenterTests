@@ -162,7 +162,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Telerik.UI.for.Xamarin.Lite">
+    <PackageReference Include="Telerik.UI.for.Xamarin">
       <Version>2021.1.413.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
